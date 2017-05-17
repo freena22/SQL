@@ -1,9 +1,5 @@
 # SQL Basic Knowledge
-
-#### WorkFlow:
-- Step 1: Connect to your database
-- Step 2: Run some basic commands
-- Step 3: Start querying your data!
+-----
 
 #### SQL Data Structure
 ##### Text and string types
@@ -25,7 +21,7 @@ PostgreSQL: \dt and \d tablename
 MySQL: show tables and describe tablename
 SQLite: .table and .schema tablename
 ```
-## SQLIte 
+## SQLite 
 #### Environment Set Up
 ```sh
 $  sqlite3 chinook.db  # use the database
@@ -38,7 +34,32 @@ sqlite>
 - sqlite> .schema Album  # see the schema of your tables (datatype,primary key, foreign key
 - sqlite> .exit
 ```
-#### Basic Sytax
+#### Using SQLite3 in Python
+```sh
+# Making Connection
+import sqlite3
+conn = sqlite3.connect('jobs.db')
+# Creating A Cursor And Running A Query
+cursor = conn.cursor()  
+query = "SELECT * FROM recent_grads;"  # SQL query as a string
+cursor.execute(query) # Execute the query, covert the results to tuples and store as a local varaible
+results = cursor.fetchall()  # Fetch the full results set as a list of tuples
+print(results[0:3])
+# fetchone() and fetchmany()
+cursor.execute(query)
+first_result = cursor.fitchone()
+five_results = cursor.fitchmany(5)  
+# Closing the Database Connection
+conn.close()   
+# All Practice
+data = sqlite3.connect('jobs.db')
+query='SELECT Major FROM recent_grads ORDER BY Major desc;'
+result = data.cursor().execute(query).fetchall()
+data.close()
+# Pandas
+pd.read_sql_query()
+```
+#### Basic SQL Sytax
 ```sh
 QUERT = '''
 SELECT ordernames.name, COUNT(*) as num
