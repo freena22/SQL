@@ -1,3 +1,5 @@
+# <EASY>
+
 # LeetCode5_delete_duplicate_emails
 
 # Write a SQL query to delete all duplicate email entries in a table named Person, 

@@ -1,4 +1,5 @@
- 
+# <EASY> 
+
 # LeetCode6_rising_temperature
 
 # Given a Weather table, write a SQL query to find all dates'Ids 
