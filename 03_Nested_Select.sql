@@ -44,8 +44,10 @@ AND population < (SELECT population FROM world WHERE name = 'Poland');
 SELECT name FROM world 
 WHERE gdp > ALL(SELECT gdp FROM world WHERE continent='Europe' AND gdp IS NOT NULL);
 
-
-
 SELECT Salary FROM Table 
 WHERE Salary < (SELECT salary FROM Table ORDER by Salary DESC )
+
+# Select the code that shows the name, region and population of the smallest country in each region
+SELECT region, name, population FROM bbc x 
+WHERE population <= ALL (SELECT population FROM bbc y WHERE y.region=x.region AND population>0)
 
