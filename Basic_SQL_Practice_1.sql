@@ -38,6 +38,7 @@ FROM recent_grads ORDER BY quartile_spread LIMIT 20;
 
 ## <Group Summary Statistics>
 
+
 # Group By
 
 SELECT Major_category, AVG(Employed) / AVG(Total) share_employed
@@ -69,6 +70,8 @@ HAVING share_degree_jobs < 0.3;
 SELECT CAST(Women as Float) / CAST(Total as Float) FROM recent_grads limit 5
 
 ## <Subqueries>
+
+#
 
 
 
