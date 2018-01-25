@@ -71,8 +71,11 @@ SELECT CAST(Women as Float) / CAST(Total as Float) FROM recent_grads limit 5
 
 ## <Subqueries>
 
-#
-#
+SELECT Major, Unemployment_rate FROM recent_grads
+WHERE Unemployment_rate < (SELECT AVG(Unemployment_rate) FROM recent_grads)
+ORDER BY Unemployment_rate;
+
+
 
 
 
