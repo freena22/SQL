@@ -75,6 +75,19 @@ SELECT Major, Unemployment_rate FROM recent_grads
 WHERE Unemployment_rate < (SELECT AVG(Unemployment_rate) FROM recent_grads)
 ORDER BY Unemployment_rate;
 
+# computes the proportion (as a float value) of rows that contain above average values for the ShareWomen.
+SELECT CAST(COUNT(*) as float)/ CAST((SELECT COUNT(*) FROM recent_grads) as float) proportion_abv_avg
+FROM recent_grads
+WHERE ShareWomen > (SELECT AVG(ShareWomen) FROM recent_grads);
+
+# Major_category is one of the 5 highest group level sums for the Total column
+SELECT Major, Major_category FROM recent_grads
+WHERE Major_category IN (select Major_category from recent_grads
+group by Major_category
+order by SUM(Total) DESC
+limit 5);
+
+
 
 
 
