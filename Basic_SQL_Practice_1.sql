@@ -112,6 +112,22 @@ ON o.account_id = a.id;
 
 
 
+## < CASE WHEN >
+
+SELECT id, account_id, standard_amt_usd/standard_qty AS unit_price
+FROM orders
+LIMIT 10;
+
+# -- transfer to this kind query
+
+SELECT account_id, CASE WHEN standard_qty = 0 OR standard_qty IS NULL THEN 0
+                        ELSE standard_amt_usd/standard_qty END AS unit_price
+FROM orders
+LIMIT 10;
+
+
+
+
 
 
 
