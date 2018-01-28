@@ -1,7 +1,7 @@
 
 ### Basic SQL Practice
 
-## < Intro to SQL>
+## < Intro to SQL >
 
 # SELECT FROM / WHERE
 
@@ -17,7 +17,7 @@ SELECT Major_category, Major, Unemployment_rate FROM recent_grads
 WHERE Major_category='Engineering' OR Major_category='Physical Sciences'
 ORDER BY Unemployment_rate ASC;
 
-## < Summary Statistics>
+## < Summary Statistics >
 
 # COUNT() / SUM() 
 SELECT COUNT(Major), SUM(Total) FROM recent_grads WHERE ShareWomen < 0.5;
@@ -36,7 +36,7 @@ SELECT COUNT(*) "Number of Students", MAX(Unemployment_rate) "Highest Unemployme
 SELECT Major, Major_category, (P75th - P25th) quartile_spread
 FROM recent_grads ORDER BY quartile_spread LIMIT 20;
 
-## <Group Summary Statistics>
+## < Group Summary Statistics >
 
 
 # Group By
@@ -69,7 +69,7 @@ HAVING share_degree_jobs < 0.3;
 # Casting -- transfer the interger to float
 SELECT CAST(Women as Float) / CAST(Total as Float) FROM recent_grads limit 5
 
-## <Subqueries>
+## < Subqueries >
 
 SELECT Major, Unemployment_rate FROM recent_grads
 WHERE Unemployment_rate < (SELECT AVG(Unemployment_rate) FROM recent_grads)
@@ -86,6 +86,30 @@ WHERE Major_category IN (select Major_category from recent_grads
 group by Major_category
 order by SUM(Total) DESC
 limit 5);
+
+## < JOIN >
+
+
+# Three Tables Join
+SELECT r.name region, s.name rep, a.name account
+FROM sales_reps s
+JOIN region r
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+ORDER BY a.name;
+
+# Four Tables Join
+SELECT r.name region, a.name account, 
+       o.total_amt_usd/(o.total + 0.01) unit_price
+FROM region r
+JOIN sales_reps s
+ON s.region_id = r.id
+JOIN accounts a
+ON a.sales_rep_id = s.id
+JOIN orders o
+ON o.account_id = a.id;
+
 
 
 
