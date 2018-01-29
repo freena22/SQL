@@ -125,6 +125,18 @@ SELECT account_id, CASE WHEN standard_qty = 0 OR standard_qty IS NULL THEN 0
 FROM orders
 LIMIT 10;
 
+# More complicated and grouping aggregation
+
+SELECT a.name, SUM(total_amt_usd) total_spent, 
+     CASE WHEN SUM(total_amt_usd) > 200000 THEN 'top'
+     WHEN  SUM(total_amt_usd) > 100000 THEN 'middle'
+     ELSE 'low' END AS customer_level
+FROM orders o
+JOIN accounts a
+ON o.account_id = a.id 
+GROUP BY a.name
+ORDER BY 2 DESC;
+
 
 
 
