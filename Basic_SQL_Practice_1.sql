@@ -138,6 +138,29 @@ GROUP BY a.name
 ORDER BY 2 DESC;
 
 
+## < Subqueries & Temporary Table >
+
+SELECT AVG(standard_qty) as standard, AVG(gloss_qty) as gloss, AVG(poster_qty) as poster, 
+FROM orders
+WHERE DATE_TRUNC('month',occurred_at) = 
+(SELECT MIN(DATE_TRUNC('month', occurred_at))
+FROM Orders) AND DATE_TRUNC('year', occurred_at) = (SELECT MIN(DATE_TRUNC('year', occurred_at))
+FROM Orders)
+
+# WITH
+WITH events AS (
+          SELECT DATE_TRUNC('day',occurred_at) AS day, 
+                        channel, COUNT(*) as events
+          FROM web_events 
+          GROUP BY 1,2)
+
+SELECT channel, AVG(events) AS average_events
+FROM events
+GROUP BY channel
+ORDER BY 2 DESC;
+
+
+
 
 
 
