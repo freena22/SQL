@@ -159,6 +159,23 @@ FROM events
 GROUP BY channel
 ORDER BY 2 DESC;
 
+## < Using subquery as a filter before JOIN >
+
+# a common join to find the capital_city in country table
+SELECT c.name AS capital_city, f.name AS country, c.population
+FROM cities c JOIN facts f ON c.facts_id = f.id
+WHERE c.capital = 1
+ORDER BY 3 DESC
+LIMIT 10;
+
+# use subquery filter the city first then join 
+SELECT c.name AS capital_city, f.name AS country, c.population
+FROM facts f 
+JOIN (
+      SELECT * FROM cities
+      WHERE capital = 1 AND population > 10000000
+     ) c ON c.facts_id = f.id
+ORDER BY 3 DESC;
 
 
 
