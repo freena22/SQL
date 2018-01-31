@@ -178,7 +178,12 @@ JOIN (
      ) c ON c.facts_id = f.id
 ORDER BY 3 DESC;
 
+## < SQL Data Cleaning >
 
+# LEFT & RIGHT & LENGTH -- pull the number of characters 
+LEFT(phone_number, 3) -- area code
+RIGHT(phone_number, 8) -- phone number
+LENGTH(phone_number)  -- number of characters for each row 
 
 
 
