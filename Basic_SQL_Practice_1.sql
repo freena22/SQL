@@ -46,11 +46,11 @@ FROM recent_grads
 GROUP BY Major_category;
 
 # Having and Where
-# The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions. 
-# HAVING clause is like a WHERE clause, but applies only to groups as a whole 
-# that is, to the rows in the result set representing groups, whereas the WHERE clause applies to individual rows
 
-WHERE comes before GROUP BY; SQL evaluates the WHERE clause before it groups records.
+# The HAVING clause was added to SQL because the WHERE keyword could not be used with aggregate functions. 
+# that is, to the rows in the result set representing groups, whereas the WHERE clause applies to individual rows
+# WHERE comes before GROUP BY; SQL evaluates the WHERE clause before it groups records.
+
 SELECT Major_category, AVG(Low_wage_jobs) / AVG(Total) AS share_low_wage FROM recent_grads
 GROUP BY Major_category
 HAVING share_low_wage > 0.1;
@@ -86,6 +86,7 @@ WHERE Major_category IN (select Major_category from recent_grads
 group by Major_category
 order by SUM(Total) DESC
 limit 5);
+
 
 ## < JOIN >
 
@@ -138,7 +139,7 @@ GROUP BY a.name
 ORDER BY 2 DESC;
 
 
-## < Subqueries & Temporary Table >
+## < Subqueries & Temporary Table > -- AS a filter
 
 SELECT AVG(standard_qty) as standard, AVG(gloss_qty) as gloss, AVG(poster_qty) as poster, 
 FROM orders
