@@ -31,3 +31,17 @@ hacker_news.estimate_query_size(query)
 
 # Actually run a query
 
+BigQueryHelper.query_to_pandas(query) # This method takes a query and returns a Pandas dataframe.
+BigQueryHelper.query_to_pandas_safe(query, max_gb_scanned=1)
+# This method takes a query and returns a Pandas dataframe only if the size of the query is less than the upperSizeLimit (1 gigabyte by default).
+
+# only run this query if it's less than 100 MB
+hacker_news.query_to_pandas_safe(query, max_gb_scanned=0.1)
+
+# check out the scores of job postings (if the 
+# query is smaller than 1 gig)
+job_post_scores = hacker_news.query_to_pandas_safe(query)
+
+# average score for job posts
+job_post_scores.score.mean()  # 2.1562956775944873
+
